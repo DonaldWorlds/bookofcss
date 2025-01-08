@@ -1,0 +1,376 @@
+/* 
+  Media queries allow us to apply different styles based on the screen size, device type, or other characteristics.
+  It's like telling the browser, "If the screen is narrow, make the text bigger, or if it's a wide screen, display elements side by side!"
+  They help make websites responsive, adapting layouts for phones, tablets, and desktops.
+
+  Example:
+    @media (max-width: 768px) { 
+      /* Styles for devices with a screen width of 768px or less (like tablets or mobile phones) */
+      body { font-size: 16px; }
+    }
+
+  Media queries make websites look great on any device, ensuring an optimal user experience everywhere!
+*/
+
+
+
+
+/* 
+  @media all and (expression) { rules }
+  @media (expression) { rules }
+  
+  These are two ways of writing media queries. The first allows specifying the type of media (e.g., 'all', 'screen', 'print') and an expression. 
+  The second format is simpler and only includes the expression, which evaluates conditions like screen size, resolution, or orientation to apply styles.
+
+  The 'and', 'not', and 'only' operators help refine media queries:
+  - 'and' combines multiple conditions.
+  - 'not' negates a query.
+  - 'only' is used to prevent old browsers (like IE) from applying certain styles.
+*/
+
+/*
+  Media features are characteristics about the device or viewport being used to display the web page.
+  These features are evaluated as expressions to determine which CSS rules to apply based on the device's capabilities or viewport characteristics.
+  You must specify the value you want to evaluate against.
+*/
+
+@media (feature: value) { rules }
+/* 
+  The media query syntax for a specific feature and value.
+  Example: @media (min-width: 600px) { rules } 
+  This applies rules when the viewport is at least 600px wide.
+*/
+
+/* 
+  To test the existence of a media feature itself (without a specific value), 
+  you can write the query like this:
+*/
+@media (feature) { rules }
+/* 
+  This checks whether the feature exists, not whether it meets a specific value.
+  Example: @media (color) { rules } 
+  It applies rules if the device supports color display (which is almost always true, but can be useful for certain devices).
+*/
+
+/* 
+  Media queries are often used for screens that display content, such as computers or smartphones, but they can also be used for alternative devices like TVs, projectors, or printers.
+  For example, you can apply specific rules based on the screen resolution or device type.
+*/
+
+/* 
+  Width and Height Media Features:
+  - `width` refers to the width of the viewport (the visible area of a browser).
+  - `height` refers to the height of the viewport.
+
+  These can be used to set breakpoints for responsive designs.
+*/
+
+@media (width: 600px) { rules }
+/* 
+  The `width` media feature specifies the width of the rendering viewport.
+  It refers to the visible area of the browser, not the entire window or screen. This can be used to target specific viewport widths.
+*/
+
+/* 
+  To avoid overly specific queries, we use `min-width` and `max-width` to target ranges of screen sizes.
+*/
+
+@media (max-width: 480px) { rules }
+/* 
+  This applies rules when the width of the viewport is 480px or smaller, typically targeting mobile devices.
+*/
+
+@media (min-width: 640px) { rules }
+/* 
+  This applies rules when the viewport width is at least 640px, targeting larger devices like tablets or small desktops.
+*/
+
+/* 
+  Example: Adjusting the header image based on viewport width.
+  The image will only appear if the viewport is 400px or wider. If the browser is resized, the styles will change.
+*/
+@media (min-width: 400px) {
+    h1 { background: url('landscape.jpg'); }
+}
+
+/* 
+  This media query checks if the viewport is at least 400px wide, and if so, sets a background image for the `<h1>` element. 
+  If the browser window is resized below 400px, the background image is removed.
+*/
+
+/* 
+  The height media feature works similarly to width but targets the height of the viewport instead. 
+  It allows you to apply styles based on the vertical size of the browser window.
+  You can also use the `min-height` and `max-height` properties in the same way as `min-width` and `max-width`.
+*/
+
+@media (height: value) { rules }
+/* 
+  This targets viewports based on their height.
+  Example: @media (height: 500px) { rules } 
+  This applies styles only if the viewport height is exactly 500px.
+*/
+
+@media (max-height: value) { rules }
+/* 
+  This applies styles when the height of the viewport is less than or equal to a specified value.
+  Example: @media (max-height: 600px) { rules } 
+  This applies styles to devices with a height smaller than or equal to 600px.
+*/
+
+@media (min-height: value) { rules }
+/* 
+  This applies styles when the height of the viewport is greater than or equal to a specified value.
+  Example: @media (min-height: 700px) { rules }
+  This targets devices with a height greater than or equal to 700px.
+*/
+
+
+
+
+
+/* 
+  The Pixel Radio (DPR - Device Pixel Ratio):
+  Modern smartphones and tablets have high-resolution screens. An element that is 1024 pixels wide on these devices would appear quite small and difficult to read. To handle this, these devices use a concept called "Device Pixel Ratio" (DPR), which separates logical pixels (CSS pixels) from physical device pixels. 
+  The DPR value can be 1, 2, or 3, depending on the device's screen resolution:
+  - DPR 1: Standard resolution (like most desktop monitors).
+  - DPR 2: Retina displays (found on high-resolution devices like newer iPhones).
+  - DPR 3: Ultra high-resolution displays (such as some modern phones or tablets).
+*/
+
+/* 
+  Media queries for adjusting styles based on the device's pixel resolution.
+  - `@media` queries with `resolution` target devices with specific pixel densities, ensuring images and elements appear correctly on high-resolution screens.
+*/
+
+@media media and (resolution: value) { rules }
+/* 
+  This media query allows you to apply styles based on a specific pixel resolution. 
+  The value is typically in terms of `dppx` (dots per pixel). For example, `1.5dppx` targets devices with a 1.5x pixel ratio.
+  Example: @media (resolution: 2dppx) { rules } targets high-resolution screens.
+*/
+
+/* 
+  The `resolution` value is a number with a unit such as `dppx` (dots per pixel) or `dpi` (dots per inch). 
+  - `1.5dppx` means 1.5 times the normal resolution of a standard display.
+*/
+
+@media (resolution: 1.5dppx) { rules }
+/* 
+  This applies styles to devices with a pixel ratio of 1.5, often seen in mid-resolution devices (like some tablets).
+*/
+
+/* 
+  You can also target ranges of resolution using `max-resolution` and `min-resolution` for greater flexibility.
+*/
+
+@media (max-resolution: number) { rules }
+/* 
+  This applies styles for devices with a resolution up to the specified value.
+  Example: @media (max-resolution: 2dppx) { rules } targets devices with a resolution of 2dppx or lower.
+*/
+
+@media (min-resolution: number) { rules }
+/* 
+  This applies styles for devices with a resolution greater than or equal to the specified value.
+  Example: @media (min-resolution: 2dppx) { rules } targets devices with a resolution of 2dppx or higher.
+*/
+
+/* 
+  Example usage: Loading different background images based on the resolution of the device.
+  On devices with a minimum resolution of 1.5dppx, a high-resolution image is loaded instead of a low-resolution image.
+*/
+
+E { background-image: url('image-lores.png'); }
+/* 
+  Default: Display the low-resolution image on all devices unless specified otherwise.
+*/
+
+@media (min-resolution: 1.5dppx) {
+    background-image: url('image-hires.png');
+    background-size: 100% 100%;
+}
+/* 
+  If the device has a pixel ratio of 1.5 or higher, display the high-resolution image. 
+  `background-size: 100% 100%` ensures the background image fills the element's dimensions.
+*/
+
+/* 
+  For Internet Explorer (IE) and older browsers, a fallback syntax is provided.
+  This ensures that browsers with different resolution detection methods can still load the appropriate styles.
+*/
+
+@media (resolution: 1.5dppx), (resolution: 144dpi) { rules }
+/* 
+  IE uses a different syntax, where the resolution is sometimes expressed in `dpi` (dots per inch). 
+  This query applies rules for devices with either a `1.5dppx` or a `144dpi` resolution.
+*/
+
+/* 
+  Safari and older browsers do not support `resolution`. Instead, they use a proprietary feature called `-webkit-device-pixel-ratio` to target high-resolution devices.
+*/
+
+@media (resolution: 1.5dppx), (resolution: 144dpi) { rules }
+/* 
+  This targets devices with either a `1.5dppx` resolution or `144dpi` resolution in browsers that support the `resolution` feature.
+*/
+
+@media (resolution: 1.5dppx), (resolution: 144dpi), (-webkit-device-pixel-ratio: 2) { rules }
+/* 
+  This query adds support for Safari and other WebKit-based browsers by targeting the `-webkit-device-pixel-ratio` feature.
+  This ensures compatibility across browsers, especially for high-resolution displays (such as Retina displays).
+*/
+
+
+
+
+
+
+/* 
+  Device Width and Height:
+  If you need to target devices larger than the viewport size (i.e., the physical device size), you can use `device-width` and `device-height` media features. 
+  These values are measured in physical pixels, representing the actual size of the device screen.
+*/
+
+/* 
+  Example: This meta tag sets the viewport width to match the device's screen width, ensuring a responsive layout on mobile devices.
+*/
+<meta name="viewport" content="width=device-width">
+/* 
+  This tells the browser to adjust the viewport width to the device's screen width, which ensures that the page scales properly on mobile devices.
+*/
+
+/* 
+  Orientation:
+  Use `orientation` to optimize your pages for either horizontal (landscape) or vertical (portrait) viewing modes based on the device's orientation.
+*/
+
+@media (orientation: value) { rules }
+/* 
+  The `orientation` feature can be set to either `landscape` or `portrait`:
+  - `landscape`: Applies when the width of the browser is greater than its height.
+  - `portrait`: Applies when the height of the browser is greater than its width.
+
+  Example:
+  @media (orientation: landscape) { rules } targets devices in landscape mode (wide orientation).
+  @media (orientation: portrait) { rules } targets devices in portrait mode (tall orientation).
+*/
+
+/* 
+  Example: Changing the layout of a navigation menu based on the device's orientation.
+  - In portrait mode, the `li` elements are no longer floated, making the list display vertically.
+*/
+
+ul { overflow: hidden; }
+li { float: left; }
+
+@media (orientation: portrait) {
+    li { float: none; }
+}
+/* 
+  This media query adjusts the list layout. In portrait orientation, it prevents the `li` elements from floating, making them stack vertically.
+*/
+
+/* 
+  Aspect Ratio:
+  You can create media queries that apply based on a device's or browser's aspect ratio (width-to-height ratio).
+  Use `aspect-ratio` to test the browser's aspect ratio or `device-aspect-ratio` to test the device's aspect ratio.
+*/
+
+@media (aspect-ratio: horizontal/vertical) { rules }
+/* 
+  `aspect-ratio` checks the aspect ratio of the browser window (width-to-height).
+  Example: @media (aspect-ratio: 16/9) applies to devices with a 16:9 aspect ratio (common for widescreens).
+*/
+
+@media (device-aspect-ratio: horizontal/vertical) { rules }
+/* 
+  `device-aspect-ratio` checks the device's physical aspect ratio.
+  Example: @media (device-aspect-ratio: 16/9) applies to devices with a 16:9 aspect ratio.
+*/
+
+/* 
+  Example: To target devices with a widescreen aspect ratio greater than 16:9.
+  Some manufacturers define widescreen differently, such as 16:10 or 15:10.
+*/
+
+@media (min-device-aspect-ratio: 16/9) { ... }
+/* 
+  This media query applies when the device's aspect ratio is greater than 16:9.
+  It’s useful for targeting widescreen displays.
+*/
+
+
+
+
+
+
+
+
+/* 
+  Multiple Media Features:
+  You can chain multiple media queries together on the same media type using the `and` operator. This allows for more complex, combined conditions.
+*/
+
+@media logic media and (expression) and (expression) { rules }
+/* 
+  This syntax tests that all the specified conditions are true before applying the styles.
+  Example: @media (max-device-aspect-ratio: 15/10) and (max-width: 800px) applies styles only if both conditions are met.
+*/
+
+/* 
+  Example: To apply styles to a device with a narrow screen (max-width: 800px) and an aspect ratio less than or equal to 15:10.
+*/
+
+@media (max-device-aspect-ratio: 15/10) and (max-width: 800px) { ... }
+/* 
+  This query applies when the device has an aspect ratio of 15:10 or smaller, and its width is less than or equal to 800px.
+*/
+
+/* 
+  Conditional (OR) Media Queries:
+  You can use a conditional (OR) expression by separating different media queries with a comma. 
+  The styles will apply if any of the specified conditions are met.
+*/
+
+@media logic media and (expression), logic media and (expression) { rules }
+/* 
+  This syntax applies rules when any of the conditions in the comma-separated list is true.
+  Example: @media screen and (orientation: landscape), print and (orientation: portrait) applies styles for both screen (landscape) and print (portrait).
+*/
+
+/* 
+  Example: Apply the same rules to landscape-oriented screens and portrait-oriented printed documents.
+*/
+@media screen and (orientation: landscape), print and (orientation: portrait) { ... }
+/* 
+  This query applies styles to both:
+  - Screen devices in landscape orientation.
+  - Printed documents in portrait orientation.
+*/
+
+/* 
+  Mobile-First Web Development:
+  Mobile-first web development focuses on designing for smaller screens (like smartphones) first. Then, as the screen size increases, additional assets and features are progressively added for users on larger devices (like tablets and desktops). This approach ensures that websites are optimized for performance and usability on mobile devices, where resources are more limited.
+
+  The mobile-first approach follows the principle of starting with a basic, minimal design (for mobile users) and enhancing it for larger devices by using media queries to apply specific styles when the screen size meets certain criteria.
+*/
+
+/* 
+  In the mobile-first workflow, you begin by creating a simple stylesheet that works on all browsers, including mobile devices. This basic layout will be the foundation, applying to mobile and smaller devices by default. 
+  As the device's screen size increases, you progressively enhance the design by adding features and larger assets, such as high-resolution images and complex layouts.
+*/
+
+/* 
+  Example: The `@media (min-width: 600px)` query applies styles for devices with a screen width of 600px or larger (i.e., tablets, desktops, and large screens). 
+  - This query is applied **after** the default styles for smaller screens have been set, progressively adding more complex styles or larger assets for larger devices.
+*/
+
+@media (min-width: 600px) {
+    E { background-image: url('huge-image.jpg'); }
+}
+/* 
+  This media query targets devices with a screen width of 600px or larger. 
+  - For devices that match this condition (such as tablets or desktops), a larger background image (`huge-image.jpg`) is loaded to take advantage of the larger screen.
+  - For smaller devices (below 600px), the basic styles are applied without this large background image, optimizing load time and performance on mobile.
+*/
