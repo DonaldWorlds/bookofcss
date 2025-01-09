@@ -1,0 +1,20 @@
+a[title^='Free']{
+    color: green !important;
+    display:block;
+    text-align: center;
+    width:100%;
+}
+
+a[href^='http']{
+    background: url('link.svg') no-repeat left center;
+    padding-left: 20px;
+}
+
+a[href$='.pdf']{background-image: url('pdf.svg');}
+a[href$='.doc']{background-image: url('word.svg');}
+a[href$='.rss']{background-image: url('feed.svg');}
+
+
+a[title*='image']{
+    height: 50px;
+}
